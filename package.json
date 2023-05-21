@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "vercel-build": "next build && prisma generate",
     "start": "next start"
   },
   "keywords": [],
