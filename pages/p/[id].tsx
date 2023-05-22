@@ -1,9 +1,9 @@
-import React from "react"
-import { GetServerSideProps } from "next"
-import ReactMarkdown from "react-markdown"
-import Layout from "../../components/Layout"
-import { PostProps } from "../../components/Post"
-import prisma from '../../lib/prisma';
+import React from "react";
+import { GetServerSideProps } from "next";
+import ReactMarkdown from "react-markdown";
+import Layout from "../../components/Layout";
+import { PostProps } from "../../components/Post";
+import prisma from "../../lib/prisma";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   // const post = {
@@ -28,13 +28,13 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   });
   return {
     props: post,
-  }
-}
+  };
+};
 
 const Post: React.FC<PostProps> = (props) => {
-  let title = props.title
+  let title = props.title;
   if (!props.published) {
-    title = `${title} (Draft)`
+    title = `${title} (Draft)`;
   }
 
   return (
@@ -42,7 +42,7 @@ const Post: React.FC<PostProps> = (props) => {
       <div>
         <h2>{title}</h2>
         <p>By {props?.author?.name || "Unknown author"}</p>
-        <ReactMarkdown children={props.content} />
+        <ReactMarkdown>{props.content}</ReactMarkdown>
       </div>
       <style jsx>{`
         .page {
@@ -66,7 +66,7 @@ const Post: React.FC<PostProps> = (props) => {
         }
       `}</style>
     </Layout>
-  )
-}
+  );
+};
 
-export default Post
+export default Post;
