@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   let left = (
     <div className="left">
       <Link className="bold" data-active={isActive("/")} href="/">
-        Feed
+        Home
       </Link>
       <style jsx>{`
         .bold {
