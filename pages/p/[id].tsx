@@ -37,7 +37,7 @@ async function publishPost(id: string): Promise<void> {
   await fetch(`/api/publish/${id}`, {
     method: "PUT",
   });
-  await Router.push("/");
+  await Router.push("/p");
 }
 
 async function deletePost(id: string): Promise<void> {
