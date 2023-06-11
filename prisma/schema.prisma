@@ -1,14 +1,14 @@
 // schema.prisma
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["jsonProtocol"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  provider          = "postgresql"
+  url               = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl         = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
   shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
 }
 
@@ -17,8 +17,16 @@ model Post {
   title     String
   content   String?
   published Boolean @default(false)
-  author    User?@relation(fields:[authorId], references:[id])
+  author    User?   @relation(fields: [authorId], references: [id])
   authorId  String?
+}
+
+model Diagnosis {
+  id             String  @id @default(cuid())
+  answer         String
+  answer_2         String
+  answered_user  User?   @relation(fields: [answeredUserId], references: [id])
+  answeredUserId String?
 }
 
 model Account {
@@ -37,28 +45,29 @@ model Account {
   oauth_token_secret String?
   oauth_token        String?
 
-  user User @relation(fields:[userId], references:[id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
 
 model Session {
   id           String   @id @default(cuid())
-  sessionToken String   @unique@map("session_token")
+  sessionToken String   @unique @map("session_token")
   userId       String   @map("user_id")
   expires      DateTime
-  user         User     @relation(fields:[userId], references:[id], onDelete: Cascade)
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String      @id @default(cuid())
   name          String?
-  email         String?@unique
+  email         String?     @unique
   emailVerified DateTime?
   image         String?
   posts         Post[]
   accounts      Account[]
   sessions      Session[]
+  Diagnosis     Diagnosis[]
 }
 
 model VerificationToken {

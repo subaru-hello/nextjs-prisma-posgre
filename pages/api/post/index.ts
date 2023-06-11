@@ -11,6 +11,7 @@ export default async function handle(
   res: NextApiResponse
 ) {
   const session = await getServerSession(req, res, authOptions);
+  console.log("^^^^^", session);
   const { title, content } = req.body;
   const result = await prisma.post.create({
     data: {

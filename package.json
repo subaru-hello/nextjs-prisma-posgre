@@ -8,6 +8,8 @@
     "vercel-build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
+    "prisma-g": "prisma generate",
+    "prisma-push": "prisma db push",
     "format": "prettier --write --loglevel=warn './**/*.{js,jsx,ts,tsx,html,json}'"
   },
   "keywords": [],

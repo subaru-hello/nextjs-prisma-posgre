@@ -10,3 +10,7 @@ $ npx prisma studio
 ```
 $ npm run dev
 ```
+### migrate prisma
+```
+$ npx prisma migrate dev --name [file名]
+```

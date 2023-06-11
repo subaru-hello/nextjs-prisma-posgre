@@ -14,6 +14,7 @@ const Home: React.FC<Props> = () => {
         <h1>Public Feed</h1>
         <main>
           <Link href={"/p"}>feed page</Link>
+          <Link href={"/diagnose/create"}>diagnosis</Link>
         </main>
       </div>
     </Layout>
